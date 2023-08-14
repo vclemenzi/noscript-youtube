@@ -1,0 +1,31 @@
+---
+import { Author } from "ytdl-core";
+
+interface Props {
+  id: string | undefined;
+  title: string | undefined;
+  thumbnail: string | undefined;
+  author: Author;
+  views: string | undefined;
+  published: string | undefined;
+}
+
+const { id, title, thumbnail, author, views, published } = Astro.props;
+---
+
+<div class="md:w-72 lg:w-72 p-4 rounded-md shadow-lg bg-hover justify-end mb-3">
+  <div>
+    <a href={`/${id}`}>
+      <img class="rounded-lg mb-2" src={thumbnail} />
+    </a>
+    <a class="break-words" href={`/${id}`}>
+      {title}
+    </a>
+    <br />
+    <span class="text-gray-500">{author?.name || "???"}</span>
+    <span class="text-gray-500">
+      {views} views
+    </span>
+    <span class="text-gray-500">{published}</span>
+  </div>
+</div>

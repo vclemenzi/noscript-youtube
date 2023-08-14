@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ytdl from "ytdl-core";
+import VideoCard from "../components/VideoCard.astro";
+import ytdl, { Author } from "ytdl-core";
 
 const { id } = Astro.params;
 const video = await ytdl.getInfo(id || "");
@@ -59,25 +60,16 @@ const video = await ytdl.getInfo(id || "");
         {
           video.related_videos.map((i) => {
             return (
-              <div class="md:w-72 lg:w-72 p-4 rounded-md shadow-lg bg-hover justify-end mb-3">
-                <div>
-                  <a href={`/${i.id}`}>
-                    <img
-                      class="rounded-lg mb-2"
-                      src={i.thumbnails.slice(-1)[0].url}
-                    />
-                  </a>
-                  <a class="break-words" href={`/${i.id}`}>
-                    {i.title}
-                  </a>
-                  <br />
-                  <span class="text-gray-500">{i.author?.name || "???"}</span>
-                  <span class="text-gray-500">
-                    {i.short_view_count_text} views
-                  </span>
-                  <span class="text-gray-500">{i.published}</span>
-                </div>
-              </div>
+              <>
+                <VideoCard
+                  id={i.id as string}
+                  title={i.title as string}
+                  thumbnail={i.thumbnails.slice(-1)[0].url}
+                  author={i.author as Author}
+                  views={i.short_view_count_text as string}
+                  published={i.published as string}
+                />
+              </>
             );
           })
         }
