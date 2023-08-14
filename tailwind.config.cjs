@@ -4,10 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'raisin': '#242331',
-        'coral': '#FF8552',
-        'whitex': '#FBFCFF',
-        'saffron': '#FAC748',
+        'raisin': '#0f0f0f',
+        'hover': '#272727',
       }
     },
   },
