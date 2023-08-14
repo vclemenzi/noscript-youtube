@@ -50,10 +50,12 @@ const video = await ytdl.getInfo(id || "");
           return (
             <div class="md:w-72 lg:w-72 p-4 rounded-md shadow-lg bg-hover justify-end mb-3">
               <div>
-                <img
-                  class="rounded-lg mb-2"
-                  src={i.thumbnails.slice(-1)[0].url}
-                />
+                <a href={`/${i.id}`}>
+                  <img
+                    class="rounded-lg mb-2"
+                    src={i.thumbnails.slice(-1)[0].url}
+                  />
+                </a>
                 <a class="break-words" href={`/${i.id}`}>
                   {i.title}
                 </a>
