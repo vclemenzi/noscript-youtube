@@ -2,4 +2,31 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="No Script Youtube!" />
+<Layout title="No Script Youtube!">
+  <main class="text-center mt-20 ml-36 mr-36">
+    <div>
+      <h1 class="text-4xl font-bold">🚫 No Script YouTube</h1>
+      <p class="mt-4">
+        Welcome to NoScript Youtube! A youtube client that doesn't use
+        javascript!
+      </p>
+    </div>
+    <hr class="mt-5 mb-5" />
+    <div>
+      <h1 class="text-3xl font-bold">How it works?</h1>
+      <p>
+        For the video, the URL that matches the source of the video is taken and
+        the HTML5 video player is used to display it. Instead, for other
+        information, the
+        <a
+          href="https://www.npmjs.com/package/ytdl-core"
+          class="text-blue-600 hover:underline">ytdl-core</a
+        > library of nodejs is used, which through web scraping takes basic information
+        such as channel and recommended videos. The styling uses <a
+          href="https://tailwindcss.com/"
+          class="text-blue-600 hover:underline">TailwindCSS</a
+        >
+      </p>
+    </div>
+  </main>
+</Layout>

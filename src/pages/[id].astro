@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ytdl, { validateID } from "ytdl-core";
+import ytdl from "ytdl-core";
 
 const { id } = Astro.params;
-const video = await ytdl.getInfo(id);
+const video = await ytdl.getInfo(id || "");
 ---
 
 <Layout title={video.videoDetails.title}>
