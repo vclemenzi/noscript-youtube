@@ -19,7 +19,7 @@ const video = await ytdl.getInfo(id);
   <div class="md:flex lg:flex">
     <div class="md:w-2/3 lg:w-2/3 p-3">
       <h1 class="font-bold text-lg mb-3">{video.videoDetails.title}</h1>
-      <div class="flex">
+      <div class="flex mb-8">
         <img
           class="rounded-full mr-3"
           src={video.videoDetails.author.thumbnails[0].url}
@@ -34,6 +34,10 @@ const video = await ytdl.getInfo(id);
             {video.videoDetails.author.subscriber_count} subscribers
           </span>
         </div>
+      </div>
+      <hr />
+      <div class="p-1 whitespace-pre-line">
+        {video.videoDetails.description}
       </div>
     </div>
 
