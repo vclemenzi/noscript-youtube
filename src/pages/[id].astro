@@ -1,9 +1,66 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ytdl, { validateID } from "ytdl-core";
 
 const { id } = Astro.params;
+const video = await ytdl.getInfo(id);
 ---
 
-<Layout title="">
-  {id}
+<Layout title={video.videoDetails.title}>
+  <video controls class="w-full">
+    <source
+      src={video.formats
+        .filter((i) => i.audioBitrate != null && i.qualityLabel != null)
+        .slice(-1)[0].url}
+      type="video/mp4"
+    />
+    Your browser does not support the video tag.
+  </video>
+  <div class="flex">
+    <div class="w-2/3 p-3">
+      <h1 class="font-bold text-lg mb-3">{video.videoDetails.title}</h1>
+      <div class="flex">
+        <img
+          class="rounded-full mr-3"
+          src={video.videoDetails.author.thumbnails[0].url}
+        />
+        <div>
+          <a href={video.videoDetails.author.channel_url}>
+            {video.videoDetails.author.name}
+            <span class="text-gray-500">{video.videoDetails.author.user}</span>
+          </a>
+          <br />
+          <span class="text-gray-500">
+            {video.videoDetails.author.subscriber_count} subscribers
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-1/3">
+      {
+        video.related_videos.map((i) => {
+          return (
+            <div class="p-3 justify-end">
+              <div>
+                <img
+                  class="rounded-lg mb-2"
+                  src={i.thumbnails.slice(-1)[0].url}
+                />
+                <a class="break-words" href={`/${i.id}`}>
+                  {i.title}
+                </a>
+                <br />
+                <span class="text-gray-500">{i.author?.name || "???"}</span>
+                <span class="text-gray-500">
+                  {i.short_view_count_text} views
+                </span>
+                <span class="text-gray-500">{i.published}</span>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
 </Layout>
