@@ -1,13 +1,14 @@
 ---
-import YouTube from "youtube-sr";
+import { Client } from "youtubei";
 import Layout from "../../layouts/Layout.astro";
 import VideoCard from "../../components/VideoCard.astro";
 import Search from "../../components/Search.astro";
 
 const { query } = Astro.params;
 
-const results = await YouTube.search(query, {
-  limit: 20,
+const youtube = new Client();
+const results = await youtube.search(query as string, {
+  type: "video",
 });
 ---
 
@@ -20,15 +21,17 @@ const results = await YouTube.search(query, {
     class="pl-3 pr-3 mt-3 md:grid md:grid-cols-3 md:gap-3 lg:grid-cols-4 lg:gap-4 2xl:grid-cols-5 2xl:gap-5"
   >
     {
-      results.map((i) => {
+      results.items.map(async (i) => {
+        const video = await i.getVideo();
+
         return (
           <VideoCard
             id={i.id}
             title={i.title}
-            thumbnail={i.thumbnail}
-            author={i.channel.name}
-            views={i.views}
-            published={i.uploadedAt}
+            thumbnail={i.thumbnails[0].url}
+            author={i.channel?.name}
+            views={video.viewCount?.toString()}
+            published={i.uploadDate}
           />
         );
       })

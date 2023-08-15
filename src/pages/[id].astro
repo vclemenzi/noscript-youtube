@@ -2,10 +2,17 @@
 import Layout from "../layouts/Layout.astro";
 import VideoCard from "../components/VideoCard.astro";
 import Search from "../components/Search.astro";
+import Comment from "../components/Comment.astro";
+import { Client, VideoComments } from "youtubei";
 import ytdl from "ytdl-core";
 
 const { id } = Astro.params;
+const youtube = new Client();
+
 const video = await ytdl.getInfo(id || "");
+
+const comments = (await youtube.getVideo(id || ""))?.comments as VideoComments;
+await comments.next();
 ---
 
 <Layout title={video.videoDetails.title}>
@@ -13,7 +20,7 @@ const video = await ytdl.getInfo(id || "");
     <div class="p-4 flex justify-center">
       <Search />
     </div>
-    <video controls class="w-full p-3">
+    <video controls class="w-full p-3 pt-0">
       <source
         src={video.formats
           .filter((i) => i.audioBitrate != null && i.qualityLabel != null)
@@ -22,8 +29,8 @@ const video = await ytdl.getInfo(id || "");
       />
       Your browser does not support the video tag.
     </video>
-    <div>
-      <div class="p-3">
+    <div class="md:flex">
+      <div class="p-3 md:w-3/4">
         <div class="p-4 rounded-md shadow-lg bg-hover">
           <h1 class="font-bold text-lg mb-3">{video.videoDetails.title}</h1>
           <div class="flex items-center">
@@ -60,11 +67,19 @@ const video = await ytdl.getInfo(id || "");
         >
           {video.videoDetails.description}
         </p>
+
+        <div
+          class="hidden md:block p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
+        >
+          {
+            comments.items.map((i) => {
+              return <Comment comment={i} />;
+            })
+          }
+        </div>
       </div>
 
-      <div
-        class="pl-3 pr-3 mt-3 md:grid md:grid-cols-3 md:gap-3 lg:grid-cols-4 lg:gap-4 2xl:grid-cols-5 2xl:gap-5"
-      >
+      <div class="pl-3 pr-3 mt-3 md:w-1/4">
         {
           video.related_videos.map((i) => {
             return (

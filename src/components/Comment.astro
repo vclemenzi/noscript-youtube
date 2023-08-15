@@ -1,0 +1,28 @@
+---
+import type { Comment } from "youtubei";
+
+interface Props {
+  comment: Comment;
+};
+
+const { comment } = Astro.props;
+---
+
+<div>
+  <div class="flex items-center">
+    <img class="rounded-full m-2 ml-0 w-8 h-8" src={comment.author.thumbnails[0].url} /> 
+    <h1 class="mr-2">{comment.author.name}</h1>
+
+    {
+      comment.isAuthorChannelOwner ? <span class="rounded-full bg-yellow-400 pl-2 pr-2 text-black ml-1 mr-1">author</span> : ""
+    }
+
+    {
+      comment.isPinned ? <span class="rounded-full bg-green-400 pl-2 pr-2 text-black ml-1 mr-1">pinned</span> : ""
+    }
+  </div>
+
+  <p class="p-2 pt-0">
+    {comment.content}
+  </p>
+</div>
