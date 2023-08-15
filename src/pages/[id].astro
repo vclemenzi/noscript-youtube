@@ -69,7 +69,7 @@ const video = await ytdl.getInfo(id || "");
                   id={i.id as string}
                   title={i.title as string}
                   thumbnail={i.thumbnails.slice(-1)[0].url}
-                  author={i.author as Author}
+                  author={i.author?.name}
                   views={i.short_view_count_text as string}
                   published={i.published as string}
                 />

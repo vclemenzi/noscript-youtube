@@ -1,11 +1,9 @@
 ---
-import { Author } from "ytdl-core";
-
 interface Props {
   id: string | undefined;
   title: string | undefined;
   thumbnail: string | undefined;
-  author: Author;
+  author: string;
   views: string | undefined;
   published: string | undefined;
 }
@@ -22,7 +20,7 @@ const { id, title, thumbnail, author, views, published } = Astro.props;
       {title}
     </a>
     <br />
-    <span class="text-gray-500">{author?.name || "???"}</span>
+    <span class="text-gray-500">{author || "???"}</span>
     <span class="text-gray-500">
       {views} views
     </span>

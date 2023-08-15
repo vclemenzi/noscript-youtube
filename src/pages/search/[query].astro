@@ -1,0 +1,37 @@
+---
+import YouTube from "youtube-sr";
+import Layout from "../../layouts/Layout.astro";
+import VideoCard from "../../components/VideoCard.astro";
+import Search from "../../components/Search.astro";
+
+const { query } = Astro.params;
+
+const results = await YouTube.search(query, {
+  limit: 20,
+});
+---
+
+<Layout title={query}>
+  <div class="p-6 flex justify-center">
+    <Search query={query} />
+  </div>
+
+  <div
+    class="pl-3 pr-3 mt-3 md:grid md:grid-cols-3 md:gap-3 lg:grid-cols-4 lg:gap-4 2xl:grid-cols-5 2xl:gap-5"
+  >
+    {
+      results.map((i) => {
+        return (
+          <VideoCard
+            id={i.id}
+            title={i.title}
+            thumbnail={i.thumbnail}
+            author={i.channel.name}
+            views={i.views}
+            published={i.uploadedAt}
+          />
+        );
+      })
+    }
+  </div>
+</Layout>

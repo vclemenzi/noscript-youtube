@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'raisin': '#0f0f0f',
         'hover': '#272727',
+        'red-yt': '#ff0000',
       }
     },
   },

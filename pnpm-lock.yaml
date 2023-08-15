@@ -17,6 +17,9 @@ dependencies:
   tailwindcss:
     specifier: ^3.0.24
     version: 3.3.3
+  youtube-sr:
+    specifier: ^4.3.4
+    version: 4.3.4
   ytdl-core:
     specifier: ^4.11.5
     version: 4.11.5
@@ -4007,6 +4010,10 @@ packages:
   /yocto-queue@1.0.0:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
+    dev: false
+
+  /youtube-sr@4.3.4:
+    resolution: {integrity: sha512-olSYcR80XigutCrePEXBX3/RJJrWfonJQj7+/ggBiWU0CzTDLE1q8+lpWTWCG0JpzhzILp/IB/Bq/glGqqr1TQ==}
     dev: false
 
   /ytdl-core@4.11.5:
