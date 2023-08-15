@@ -1,40 +1,35 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import VideoCard from "../components/VideoCard.astro";
+import Search from "../components/Search.astro";
+import YouTube from "youtube-sr";
+
+const homepage = await YouTube.homepage();
 ---
 
 <Layout title="No Script Youtube!">
-  <main class="text-center mt-20 ml-36 mr-36">
-    <div>
-      <h1 class="text-4xl font-bold">🚫 No Script YouTube</h1>
-      <p class="mt-4">
-        Welcome to NoScript Youtube! A youtube client that doesn't use
-        javascript!
-      </p>
-    </div>
-    <hr class="mt-5 mb-5" />
-    <div>
-      <h1 class="text-3xl font-bold">How it works?</h1>
-      <p>
-        For the video, the URL that matches the source of the video is taken and
-        the HTML5 video player is used to display it. Instead, for other
-        information, the
-        <a
-          href="https://www.npmjs.com/package/ytdl-core"
-          class="text-blue-600 hover:underline">ytdl-core</a
-        > library of nodejs is used, which through web scraping takes basic information
-        such as channel and recommended videos. The styling uses <a
-          href="https://tailwindcss.com/"
-          class="text-blue-600 hover:underline">TailwindCSS</a
-        >
-      </p>
+  <div class="p-6 flex justify-center">
+    <Search />
+  </div>
 
-      <a href="/GtL1huin9EE">
-        <button
-          class="p-3 bg-blue-600 w-full rounded-md mt-6 text-lg font-bold"
-        >
-          Try No Script YouTube Now!
-        </button>
-      </a>
-    </div>
-  </main>
+  <div
+    class="pl-3 pr-3 mt-3 md:grid md:grid-cols-3 md:gap-3 lg:grid-cols-4 lg:gap-4 2xl:grid-cols-5 2xl:gap-5"
+  >
+    {
+      homepage.map((i) => {
+        return (
+          <>
+            <VideoCard
+              id={i.id}
+              title={i.title}
+              thumbnail={i.thumbnail}
+              author={i.channel.name}
+              views={i.views}
+              published={i.uploadedAt}
+            />
+          </>
+        );
+      })
+    }
+  </div>
 </Layout>
