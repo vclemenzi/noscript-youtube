@@ -51,7 +51,9 @@ const video = await ytdl.getInfo(id || "");
           </div>
         </div>
 
-        <div class="whitespace-pre-line p-4 rounded-md shadow-lg bg-hover mt-4">
+        <div
+          class="whitespace-pre-line p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
+        >
           {video.videoDetails.description}
         </div>
       </div>
