@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import VideoCard from "../components/VideoCard.astro";
-import ytdl, { Author } from "ytdl-core";
+import Search from "../components/Search.astro";
+import ytdl from "ytdl-core";
 
 const { id } = Astro.params;
 const video = await ytdl.getInfo(id || "");
@@ -9,6 +10,9 @@ const video = await ytdl.getInfo(id || "");
 
 <Layout title={video.videoDetails.title}>
   <div class="2xl:ml-[20%] 2xl:mr-[20%]">
+    <div class="p-4 flex justify-center">
+      <Search />
+    </div>
     <video controls class="w-full p-3">
       <source
         src={video.formats
@@ -22,7 +26,7 @@ const video = await ytdl.getInfo(id || "");
       <div class="p-3">
         <div class="p-4 rounded-md shadow-lg bg-hover">
           <h1 class="font-bold text-lg mb-3">{video.videoDetails.title}</h1>
-          <div class="flex">
+          <div class="flex items-center">
             <img
               class="rounded-full mr-3"
               src={video.videoDetails.author.thumbnails[0].url}
@@ -51,11 +55,11 @@ const video = await ytdl.getInfo(id || "");
           </div>
         </div>
 
-        <div
+        <p
           class="whitespace-pre-line p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
         >
           {video.videoDetails.description}
-        </div>
+        </p>
       </div>
 
       <div
