@@ -13,5 +13,4 @@ For the video, the URL that matches the source of the video is taken and the HTM
 - ✅Privacy
 
 - ❌No YouTube Media Player
-- ❌No Comments
 - ❌No Account or Recommendation according to your taste
