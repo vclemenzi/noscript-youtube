@@ -3,8 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import VideoCard from "../components/VideoCard.astro";
 import Search from "../components/Search.astro";
 import YouTube from "youtube-sr";
+import { homepage } from "../youtube/index";
 
-const homepage = await YouTube.homepage();
+const hp = await homepage();
 ---
 
 <Layout title="No Script Youtube!">
@@ -16,15 +17,15 @@ const homepage = await YouTube.homepage();
     class="pl-3 pr-3 mt-3 md:grid md:grid-cols-3 md:gap-3 lg:grid-cols-4 lg:gap-4 2xl:grid-cols-5 2xl:gap-5"
   >
     {
-      homepage.map((i) => {
+      hp.map((i) => {
         return (
           <>
             <VideoCard
               id={i.id}
               title={i.title}
-              thumbnail={i.thumbnail}
-              author={i.channel.name}
-              views={i.views}
+              thumbnail={i.thumbnail?.url}
+              author={i.channel?.name ?? ""}
+              views={i.views.toString()}
               published={i.uploadedAt}
             />
           </>
