@@ -62,20 +62,53 @@ await comments.next();
           </div>
         </div>
 
-        <p
-          class="whitespace-pre-line p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
+        <details
+          open
+          class="hidden md:block p-4 rounded-md shadow-lg bg-hover mt-4"
         >
-          {video.videoDetails.description}
-        </p>
+          <summary class="font-bold cursor-pointer">Description</summary>
+
+          <p class="whitespace-pre-line break-words">
+            {video.videoDetails.description}
+          </p>
+        </details>
+
+        <details class="block md:hidden p-4 rounded-md shadow-lg bg-hover mt-4">
+          <summary class="font-bold cursor-pointer">Description</summary>
+
+          <p class="whitespace-pre-line break-words">
+            {video.videoDetails.description}
+          </p>
+        </details>
 
         <div
           class="hidden md:block p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
         >
-          {
-            comments.items.map((i) => {
-              return <Comment comment={i} />;
-            })
-          }
+          <details open>
+            <summary class="font-bold cursor-pointer"
+              >Comments ({comments.items.length})</summary
+            >
+            {
+              comments.items.map((i) => {
+                return <Comment comment={i} />;
+              })
+            }
+          </details>
+        </div>
+
+        <div
+          class="block md:hidden p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
+        >
+          <details>
+            <summary class="font-bold cursor-pointer"
+              >Comments ({comments.items.length})</summary
+            >
+            {
+              comments.items.map((i) => {
+                return <Comment comment={i} />;
+              })
+            }
+          </details>
         </div>
       </div>
 
