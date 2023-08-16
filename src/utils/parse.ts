@@ -1,3 +1,7 @@
+import type { Channel } from "../youtube/types/Channel";
+import type { Playlist } from "../youtube/types/Playlist";
+import type { Video } from "../youtube/types/Video";
+
 export function parseDuration(duration: string): number {
   duration ??= "0:00";
   const args = duration.split(":");

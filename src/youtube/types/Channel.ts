@@ -6,9 +6,9 @@ export interface ChannelIcon {
 
 export interface Channel {
   name?: string;
-  verified: boolean;
+  verified?: boolean;
   id?: string;
   url?: string;
-  icon: ChannelIcon;
+  icon?: ChannelIcon;
   subscribers?: string;
 }

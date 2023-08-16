@@ -1,15 +1,12 @@
 ---
-import { Client } from "youtubei";
+import { searchVideo } from "../youtube/index";
 import Layout from "../layouts/Layout.astro";
 import VideoCard from "../components/VideoCard.astro";
 import Search from "../components/Search.astro";
 
 const q = Astro.url.searchParams.get("q");
 
-const youtube = new Client();
-const results = await youtube.search(q as string, {
-  type: "video",
-});
+const results = await searchVideo(q as string);
 ---
 
 <Layout title={q}>
@@ -21,17 +18,15 @@ const results = await youtube.search(q as string, {
     class="pl-3 pr-3 mt-3 md:grid md:grid-cols-3 md:gap-3 lg:grid-cols-4 lg:gap-4 2xl:grid-cols-5 2xl:gap-5"
   >
     {
-      results.items.map(async (i) => {
-        const video = await i.getVideo();
-
+      results.map(async (i) => {
         return (
           <VideoCard
             id={i.id}
             title={i.title}
-            thumbnail={i.thumbnails[0].url}
+            thumbnail={i.thumbnail?.url}
             author={i.channel?.name}
-            views={video.viewCount?.toString()}
-            published={i.uploadDate}
+            views={i.views.toString()}
+            published={i.uploadedAt}
           />
         );
       })
