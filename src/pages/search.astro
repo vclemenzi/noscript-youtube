@@ -1,20 +1,20 @@
 ---
 import { Client } from "youtubei";
-import Layout from "../../layouts/Layout.astro";
-import VideoCard from "../../components/VideoCard.astro";
-import Search from "../../components/Search.astro";
+import Layout from "../layouts/Layout.astro";
+import VideoCard from "../components/VideoCard.astro";
+import Search from "../components/Search.astro";
 
-const { query } = Astro.params;
+const q = Astro.url.searchParams.get("q");
 
 const youtube = new Client();
-const results = await youtube.search(query as string, {
+const results = await youtube.search(q as string, {
   type: "video",
 });
 ---
 
-<Layout title={query}>
+<Layout title={q}>
   <div class="p-6 flex justify-center">
-    <Search query={query} />
+    <Search query={q} />
   </div>
 
   <div
