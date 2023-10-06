@@ -38,7 +38,7 @@ await comments.next();
             <div>
               <a href={video.videoDetails.author.channel_url}>
                 {video.videoDetails.author.name}
-                <span class="text-gray-500">{video.videoDetails.author.user}</span>
+                <span class="ml-1 text-gray-500">{video.videoDetails.author.user}</span>
               </a>
               <br />
               <span class="text-gray-500">
@@ -62,6 +62,12 @@ await comments.next();
           <p class="whitespace-pre-line break-words">
             {video.videoDetails.description}
           </p>
+          <hr class="mb-2 mt-2" />
+          <div>
+            Published {new Date(video.videoDetails.publishDate).getMonth()}/{
+              new Date(video.videoDetails.publishDate).getDay()
+            }/{new Date(video.videoDetails.publishDate).getFullYear()} on YouTube
+          </div>
         </details>
 
         <details class="mt-4 block rounded-md bg-hover p-4 shadow-lg md:hidden">
