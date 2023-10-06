@@ -9,7 +9,7 @@ const { query } = Astro.props;
 <form action="/search" class="flex">
   <input
     type="text"
-    class="bg-hover p-2 pl-4 pr-4 w-80 md:w-96 rounded-s-md focus:outline-none"
+    class="w-80 rounded-s-md bg-hover p-2 pl-4 pr-4 focus:outline-none md:w-96"
     placeholder="Search on YouTube..."
     name="q"
     value={query}
@@ -20,7 +20,7 @@ const { query } = Astro.props;
       fill="currentColor"
       stroke-width="0"
       viewBox="0 0 24 24"
-      class="w-7 h-7 ml-2 mr-2"
+      class="ml-2 mr-2 h-7 w-7"
       xmlns="http://www.w3.org/2000/svg"
       ><path
         d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"

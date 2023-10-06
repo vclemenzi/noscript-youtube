@@ -17,7 +17,7 @@ await comments.next();
 
 <Layout title={video.videoDetails.title}>
   <div class="2xl:ml-[20%] 2xl:mr-[20%]">
-    <div class="p-4 flex justify-center">
+    <div class="flex justify-center p-4">
       <Search />
     </div>
     <video controls class="w-full p-3 pt-0">
@@ -27,31 +27,25 @@ await comments.next();
           .slice(-1)[0].url}
         type="video/mp4"
       />
-      Your browser does not support the video tag.
+       Your browser does not support the video tag.
     </video>
     <div class="md:flex">
       <div class="p-3 md:w-3/4">
-        <div class="p-4 rounded-md shadow-lg bg-hover">
-          <h1 class="font-bold text-lg mb-3">{video.videoDetails.title}</h1>
+        <div class="rounded-md bg-hover p-4 shadow-lg">
+          <h1 class="mb-3 text-lg font-bold">{video.videoDetails.title}</h1>
           <div class="flex items-center">
-            <img
-              class="rounded-full mr-3"
-              src={video.videoDetails.author.thumbnails[0].url}
-            />
+            <img class="mr-3 rounded-full" src={video.videoDetails.author.thumbnails[0].url} />
             <div>
               <a href={video.videoDetails.author.channel_url}>
                 {video.videoDetails.author.name}
-                <span class="text-gray-500"
-                  >{video.videoDetails.author.user}</span
-                >
+                <span class="text-gray-500">{video.videoDetails.author.user}</span>
               </a>
               <br />
               <span class="text-gray-500">
                 {
-                  video.videoDetails.author.subscriber_count?.toLocaleString(
-                    undefined,
-                    { minimumFractionDigits: 2 }
-                  )
+                  video.videoDetails.author.subscriber_count?.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                  })
                 } subscribers
               </span>
 
@@ -62,32 +56,25 @@ await comments.next();
           </div>
         </div>
 
-        <details
-          open
-          class="hidden md:block p-4 rounded-md shadow-lg bg-hover mt-4"
-        >
-          <summary class="font-bold cursor-pointer">Description</summary>
+        <details open class="mt-4 hidden rounded-md bg-hover p-4 shadow-lg md:block">
+          <summary class="cursor-pointer font-bold">Description</summary>
 
           <p class="whitespace-pre-line break-words">
             {video.videoDetails.description}
           </p>
         </details>
 
-        <details class="block md:hidden p-4 rounded-md shadow-lg bg-hover mt-4">
-          <summary class="font-bold cursor-pointer">Description</summary>
+        <details class="mt-4 block rounded-md bg-hover p-4 shadow-lg md:hidden">
+          <summary class="cursor-pointer font-bold">Description</summary>
 
           <p class="whitespace-pre-line break-words">
             {video.videoDetails.description}
           </p>
         </details>
 
-        <div
-          class="hidden md:block p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
-        >
+        <div class="mt-4 hidden break-words rounded-md bg-hover p-4 shadow-lg md:block">
           <details open>
-            <summary class="font-bold cursor-pointer"
-              >Comments ({comments.items.length})</summary
-            >
+            <summary class="cursor-pointer font-bold">Comments ({comments.items.length})</summary>
             {
               comments.items.map((i) => {
                 return <Comment comment={i} />;
@@ -96,13 +83,9 @@ await comments.next();
           </details>
         </div>
 
-        <div
-          class="block md:hidden p-4 rounded-md shadow-lg bg-hover mt-4 break-words"
-        >
+        <div class="mt-4 block break-words rounded-md bg-hover p-4 shadow-lg md:hidden">
           <details>
-            <summary class="font-bold cursor-pointer"
-              >Comments ({comments.items.length})</summary
-            >
+            <summary class="cursor-pointer font-bold">Comments ({comments.items.length})</summary>
             {
               comments.items.map((i) => {
                 return <Comment comment={i} />;
@@ -112,7 +95,7 @@ await comments.next();
         </div>
       </div>
 
-      <div class="pl-3 pr-3 mt-3 md:w-1/4">
+      <div class="mt-3 pl-3 pr-3 md:w-1/4">
         {
           video.related_videos.map((i) => {
             return (

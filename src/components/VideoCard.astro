@@ -11,10 +11,10 @@ interface Props {
 const { id, title, thumbnail, author, views, published } = Astro.props;
 ---
 
-<div class="md:w-72 lg:w-72 p-4 rounded-md shadow-lg bg-hover justify-end mb-3">
+<div class="mb-3 justify-end rounded-md bg-hover p-4 shadow-lg md:w-72 lg:w-72">
   <div>
     <a href={`/${id}`}>
-      <img class="rounded-lg mb-2" src={thumbnail} />
+      <img class="mb-2 rounded-lg" src={thumbnail} />
     </a>
     <a class="break-words" href={`/${id}`}>
       {title}

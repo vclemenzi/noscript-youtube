@@ -1,6 +1,6 @@
-import type { Video } from "./Video";
 import type { Channel } from "./Channel";
 import type { Thumbnail } from "./Thumbnail";
+import type { Video } from "./Video";
 
 export interface Playlist {
   id?: string;

@@ -28,13 +28,16 @@ export function next(body: any, options: { homepage: boolean } = { homepage: fal
             name: details.shortBylineText.runs[0].text,
             id: details.shortBylineText.runs[0].navigationEndpoint.browseEndpoint.browseId,
             url: `https://www.youtube.com${details.shortBylineText.runs[0].navigationEndpoint.browseEndpoint.canonicalBaseUrl}`,
-            icon: home ? details.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails[0] : details.channelThumbnail.thumbnails[0],
+            icon: home
+              ? details.channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer
+                  .thumbnail.thumbnails[0]
+              : details.channelThumbnail.thumbnails[0],
             subscribers: "0",
-            verified: Boolean(details.ownerBadges[0].metadataBadgeRenderer.tooltip === "Verified")
+            verified: Boolean(details.ownerBadges[0].metadataBadgeRenderer.tooltip === "Verified"),
           },
           thumbnail: {
             ...details.thumbnail.thumbnails[details.thumbnail.thumbnails.length - 1],
-            id: details.videoId
+            id: details.videoId,
           },
           uploadedAt: details.publishedTimeText.simpleText,
           likes: 0,
@@ -51,4 +54,3 @@ export function next(body: any, options: { homepage: boolean } = { homepage: fal
 
   return results;
 }
-
