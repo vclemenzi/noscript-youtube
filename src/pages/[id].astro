@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import VideoCard from "../components/VideoCard.astro";
 import Search from "../components/Search.astro";
 import Comment from "../components/Comment.astro";
+import { formatDesc } from "../utils/formatDesc";
 import { Client, VideoComments } from "youtubei";
 import ytdl from "ytdl-core";
 
@@ -59,9 +60,10 @@ await comments.next();
         <details open class="mt-4 hidden rounded-md bg-hover p-4 shadow-lg md:block">
           <summary class="cursor-pointer font-bold">Description</summary>
 
-          <p class="whitespace-pre-line break-words">
-            {video.videoDetails.description}
-          </p>
+          <p
+            class="whitespace-pre-line break-words"
+            set:html={formatDesc(video.videoDetails.description)}
+          />
           <hr class="mb-2 mt-2" />
           <div>
             Published {new Date(video.videoDetails.publishDate).getMonth()}/{
